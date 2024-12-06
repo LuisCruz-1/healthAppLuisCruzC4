@@ -1,0 +1,576 @@
+C:
+|   package-lock.json
+|   package.json
+|   README.m
+|   
+
++---public
+|       DH.ico
+|       favicon.ico
+|       index.html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/DH.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <title>Final-Front III</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+
+|       manifest.json
+|       robots.txt
+|       
+\---src
+    |   App.jsx
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
+import Home from "./Routes/Home";
+import Contact from "./Routes/Contact";
+import Detail from "./Routes/Detail";
+import Favs from "./Routes/Favs";
+
+
+function App() {
+  return (
+    <div className="App">
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/dentist/:id" element={<Detail />} />
+          <Route path="/favs" element={<Favs />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </div>
+  );
+}
+
+export default App;
+
+    |   index.css
+*{
+  box-sizing: border-box;
+}
+html{
+  width: 100%;
+  height: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.favButton{
+  background-color: rgba(136, 136, 136, 0.116);
+  padding: 10px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+h1{
+  text-align: center;
+}
+
+nav{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 1rem;
+}
+nav>ul{
+  display: flex;
+list-style: none;
+}
+nav > img{
+  width: 200px;
+  margin: 0;
+  height: fit-content;
+}
+
+a{
+  color: #000;
+  text-decoration: none;
+  margin: 5px;
+  cursor: pointer;
+}
+a:hover{
+  color: rgb(136, 136, 136);
+} 
+
+footer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  bottom: 0;
+  width: 90%;
+  margin-top: 2rem;
+}
+
+footer > img{
+  width: 200px;
+  margin: 0;
+}
+footer > p{
+  margin: 0;
+  padding-top: 0.7rem;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 300px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.card{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  border: 0.5px solid rgb(136, 136, 136);
+}
+
+.card:hover{
+  border: 0.5px solid rgb(206, 217, 142);
+}
+
+.card-grid{
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1rem;
+  width: 90vw;
+  height: auto;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+table {
+ border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    display: table;
+    border: 1px solid #ccc;
+
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.dark{
+  background-color: #12121296;
+  color: white;
+}
+.dark > a {
+  color: white;
+}
+
+/* Contenedor de los iconos */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+/* Estilo para cada icono */
+.social-icon img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.social-icon img:hover {
+  transform: scale(1.1);
+}
+
+    |   index.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import { ContextProvider } from './Components/utils/global.context'; // Ruta correcta de tu archivo
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <ContextProvider>  {/* Asegúrate de envolver toda la aplicación */}
+    <App />
+  </ContextProvider>,
+);
+
+
+
+    |   
+    +---Components
+    |   |   Card.jsx
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { ContextGlobal } from "./utils/global.context";
+
+const Card = ({ id, name, username }) => {
+  const { state,dispatch } = useContext(ContextGlobal);
+
+
+  const addFav = () => {
+    dispatch({ type: "ADD_FAV", payload: { id, name, username } });
+  };
+
+  const removeFav = () => {
+    dispatch({ type: "REMOVE_FAV", payload: { id } });
+  };
+
+  const isFav = state.favs.some((fav) => fav.id === id); // Verificamos si el dentista está en favoritos
+
+  return (
+    <div className="card">
+      <Link to={`/dentist/${id}`} className="card-link">
+        <h3>{name}</h3>
+        <p>{username}</p>
+      </Link>
+      {!isFav ? (
+        <button onClick={addFav} className="favButton">Add to Favorites</button>
+      ) : (
+        <button onClick={removeFav} className="favButton">Remove from Favorites</button>
+      )}
+    </div>
+  );
+};
+
+export default Card;
+
+    |   |   Footer.jsx
+import React from "react";
+import DHLogo from "../images/DH.png";
+import FacebookLogo from "../images/ico-facebook.png";
+import InstagramLogo from "../images/ico-instagram.png";
+import TiktokLogo from "../images/ico-tiktok.png";
+import WhatsappLogo from "../images/ico-whatsapp.png";
+
+const Footer = () => (
+  <footer>
+    <img src={DHLogo} alt="Digital House Logo" />
+    <div class="social-icons">
+        <span class="social-icon">
+            <img src={FacebookLogo} alt="Facebook"/>
+        </span>
+        <span class="social-icon">
+            <img src={InstagramLogo} alt="Instagram"/>
+        </span>
+        <span class="social-icon">
+            <img src={TiktokLogo} alt="Tiktok"/>
+        </span>
+        <span class="social-icon">
+            <img src={WhatsappLogo} alt="Whatsapp"/>
+        </span>
+    </div>
+  </footer>
+);
+
+export default Footer;
+
+    |   |   Form.jsx
+import React, { useState } from "react";
+
+const Form = () => {
+  const [formData, setFormData] = useState({ name: "", email: "" });
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formData.name.length > 5 && /\S+@\S+\.\S+/.test(formData.email)) {
+      setError(false);
+      setSuccess(true);
+      console.log("Form submitted successfully", formData);
+    } else {
+      setError(true);
+      setSuccess(false);
+    }
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Full Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        <button type="submit">Submit</button>
+      </form>
+      {error && <p>Please verify your information again.</p>}
+      {success && <p>Thank you {formData.name}, we will contact you shortly via email.</p>}
+    </div>
+  );
+};
+
+export default Form;
+
+    |   |   Navbar.jsx
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { ContextGlobal } from "../Components/utils/global.context";
+import DHLogo from "../images/DH.png";
+
+
+const Navbar = () => {
+  const { state, dispatch } = useContext(ContextGlobal);
+
+  const toggleTheme = () => {
+    const newTheme = state.theme === "light" ? "dark" : "light";
+    dispatch({ type: "SET_THEME", payload: newTheme });
+  };
+
+  return (
+    <nav className={state.theme}>
+      <nav>
+      <ul>
+        <li><Link to="/home">Home</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
+        <li><Link to="/favs">Favs</Link></li>
+        <button onClick={toggleTheme}>Change theme</button>
+      </ul>
+      <img src={DHLogo} alt="Digital House Logo" />
+      </nav>
+      
+    </nav>
+  );
+};
+
+export default Navbar;
+
+    |   |   
+    |   \---utils
+    |           global.context.jsx
+import React, { createContext, useReducer, useMemo } from "react";
+
+export const initialState = {
+  theme: "light",
+  data: [],
+  favs: JSON.parse(localStorage.getItem("favs")) || [],
+};
+
+export const ContextGlobal = createContext(undefined);
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "SET_THEME":
+      return { ...state, theme: action.payload };
+    case "SET_DATA":
+      return { ...state, data: action.payload };
+    case "ADD_FAV":
+      const updatedFavs = [...state.favs, action.payload];
+      localStorage.setItem("favs", JSON.stringify(updatedFavs));
+      return { ...state, favs: updatedFavs };
+    case "REMOVE_FAV":
+      const filteredFavs = state.favs.filter((fav) => fav.id !== action.payload.id);
+      localStorage.setItem("favs", JSON.stringify(filteredFavs));
+      return { ...state, favs: filteredFavs };
+    default:
+      return state;
+  }
+};
+
+export const ContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const contextValue = useMemo(() => ({ state, dispatch }), [state]);
+
+  return (
+    <ContextGlobal.Provider value={contextValue}>
+      {children}
+    </ContextGlobal.Provider>
+  );
+};
+
+    |           
+    +---images
+    |       DH.png
+    |       doctor.jpg
+    |       ico-facebook.png
+    |       ico-instagram.png
+    |       ico-tiktok.png
+    |       ico-whatsapp.png
+    |       
+    \---Routes
+            Contact.jsx
+import React, { useState, useContext } from "react";
+import { ContextGlobal } from "../Components/utils/global.context";
+
+const Contact = () => {
+  const { state } = useContext(ContextGlobal);
+  const [formData, setFormData] = useState({ name: "", email: "" });
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formData.name.length > 5 && /\S+@\S+\.\S+/.test(formData.email)) {
+      setMessage(`Thank you ${formData.name}, we will contact you soon via email.`);
+    } else {
+      setMessage("Please verify your information.");
+    }
+  };
+
+  return (
+    <div className={state.theme}>
+      <h2>Contact</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Name"
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        />
+        <button type="submit">Submit</button>
+      </form>
+      <p>{message}</p>
+    </div>
+  );
+};
+
+export default Contact;
+
+            Detail.jsx
+import React, { useEffect, useState, useContext } from "react";
+import { useParams } from "react-router-dom";
+import { ContextGlobal } from "../Components/utils/global.context";
+
+const Detail = () => {
+  const { id } = useParams();
+  const { state } = useContext(ContextGlobal);
+  const [dentist, setDentist] = useState(null);
+
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+      .then((response) => response.json())
+      .then((data) => setDentist(data));
+  }, [id]);
+
+  return (
+    <div className={state.theme}>
+      {dentist ? (
+        <>
+          <h1>{dentist.name}</h1>
+          <p>Email: {dentist.email}</p>
+          <p>Phone: {dentist.phone}</p>
+          <p>Website: {dentist.website}</p>
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
+};
+
+export default Detail;
+
+            Favs.jsx
+import React, { useContext } from "react";
+import Card from "../Components/Card";
+import { ContextGlobal } from "../Components/utils/global.context";
+
+const Favs = () => {
+  const { state } = useContext(ContextGlobal);
+
+  return (
+    <div className={state.theme}>
+      <h1>Favorites</h1>
+      <div className="card-grid">
+        {state.favs.map((fav) => (
+          <Card key={fav.id} {...fav} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Favs;
+
+            Home.jsx
+import React, { useEffect, useContext } from "react";
+import Card from "../Components/Card";
+import { ContextGlobal } from "../Components/utils/global.context";
+
+const Home = () => {
+  const { state, dispatch } = useContext(ContextGlobal);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: "SET_DATA", payload: data }));
+  }, [dispatch]);
+
+  return (
+    <main className={state.theme}>
+      <h1>Home</h1>
+      <div className="card-grid">
+        {state.data.map((dentist) => (
+          <Card key={dentist.id} {...dentist} />
+        ))}
+      </div>
+    </main>
+  );
+};
+
+export default Home;
+
+ 
