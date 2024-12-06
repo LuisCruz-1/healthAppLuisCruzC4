@@ -6,7 +6,7 @@ Este proyecto es una aplicación web para una clínica dental, donde los usuario
 
 Accede al proyecto desplegado en el siguiente enlace:
 
-[**Dental Clinic App - Desplegado**](https://health-app-luis-cruz-c4-c3uc.vercel.app/)
+[**Dental Clinic App - Desplegado**](https://health-app-luis-cruz-c4-ik0e6gpxf-luis-cruzs-projects-d82ac6a4.vercel.app/)
 
 ---
 
