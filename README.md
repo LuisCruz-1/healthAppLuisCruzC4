@@ -1,94 +1,44 @@
-# ctd-fe3-final
+# Dental Clinic App 🦷
 
-Examen Final de Frontend III
+Este proyecto es una aplicación web para una clínica dental, donde los usuarios pueden explorar dentistas, agregar favoritos y contactarse mediante un formulario.
 
-## Indice
+## 🌐 Proyecto Desplegado
 
-- [Requisitos](#requisitos)
-  - [Condiciones mínimas de aprobación](#condiciones-mínimas-de-aprobación)
-  - [Aspectos que modifican la valoración final de la nota](#aspectos-que-modifican-la-valoración-final-de-la-nota)
-- [Funcionalidades](#funcionalidades)
-- [Desarrollo](#desarrollo)
-- [API](#api)
-- [Entrega](#entrega)
-  - [Fecha de Entrega](#fecha-de-entrega)
-  - [Formato de Entrega](#formato-de-entrega)
+Accede al proyecto desplegado en el siguiente enlace:
 
-## Requisitos
+[**Dental Clinic App - Desplegado**](https://health-app-luis-cruz-c4-c3uc.vercel.app/)
 
-Es indispensable clonar este proyecto en un repositorio privado, para poder trabajar de forma _individual_ o en _dupla_. No se aceptarán proyectos que se hayan realizado sin partir de este template. Para eso deberás crear un repositorio con el nombre "ctd-esp-fe3-final" en tu cuenta de Github y luego seguir los siguientes pasos en tu terminal
+---
 
-```
-# clona el repositorio del final en tu computadora
-git clone https://github.com/Frontend-III/fe3-final
+## 🛠️ Tecnologías Utilizadas
 
-# ingresa al directorio del final
-cd fe3-final
+- **React**: Librería principal para la creación de interfaces de usuario.
+- **React Router**: Navegación entre páginas.
+- **Context API**: Manejo global del estado.
+- **CSS**: Estilos personalizados.
+- **JSONPlaceholder API**: Fuente de datos para la lista de dentistas.
+- **LocalStorage**: Para guardar los favoritos de los usuarios.
 
-# elimina los links al repositorio de DH
-git remove remote origin
+---
 
-# Agrega el link al repositorio de tu cuenta de github, reemplaza <tuusuario> por tu cuenta
-git remote add origin https://github.com/<tuusuario>/fe3-final
+## 🚀 Funcionalidades
 
-# Sube el template inicial a tu repositorio de github
-git push -u origin main
-```
+1. **Página de inicio**:
+   - Muestra una lista de dentistas obtenida de una API.
+   - Los usuarios pueden agregar dentistas a su lista de favoritos.
 
-### Condiciones de aprobación
+2. **Favoritos**:
+   - Página donde se visualizan los dentistas marcados como favoritos.
+   - Permite eliminar un dentista de la lista de favoritos.
 
-Las siguientes condiciones son requisitos mínimos necesarios para la aprobación del final:
+3. **Página de detalles**:
+   - Al hacer clic en una tarjeta de dentista, se muestra información detallada del dentista seleccionado.
 
-- **Cumplir con todas las funcionalidades obligatorias**
-- Solo se podrán utilizar las librerías que se detallan en este README. Ver [Dependencias](docs/desarrollo.md#dependencias)
-- No se considerará realizada cualquier funcionalidad que sea implementada utilizando una librería distinta a las permitidas.
-- Deberá ser desarrollada utilizando Javascript con React.js como libreria.
-- Se espera que la página de Contacto, contenga los flujos de validación necesarios (minimo 2 validaciones), para un correcto submit del formulario.
-- En los casos en que se requiera dar estilos a componentes, deberá realizarse teniendo en cuenta el theme del contexto global.
+4. **Formulario de contacto**:
+   - Permite al usuario enviar su nombre y correo electrónico.
+   - Valida que el nombre tenga más de 5 caracteres y que el correo sea válido.
 
-### Aspectos que modifican la valoración final de la nota
+5. **Cambiar tema**:
+   - Los usuarios pueden alternar entre un tema claro y oscuro.
 
-Los siguientes aspectos son extras al requisito mínimo de aprobación que serán tenidos en cuenta para aumentar la nota final, siempre y cuando su implementación sea correcta:
-
-**Validaciones**
-
-- Una validación para cada campor es suficiente, pueden ser "manuales" o con expreciones regulares. Lo importante es el correcto manejo de errores y submit.
-
-**Funcionalidad de destacados**
-
-- Se valorará funcionalidades extra a esta feature, como lo pueden ser el eliminar de destacadados, manejo de errores al intentar agregar repetidos y reseteo total de los destacados.
-
-
-**Estilos**
-
-- Se valorará el estilado de demas apartados de la App (por fuera del estilado obligatorio de las rutas en base al theme)
-
-**Buenas Prácticas**
-
-- Se prestará especial atención al uso de buenas prácticas, mejoras de performance (implementando useMemo) y la reutilizacion de codigo
-
-## Funcionalidades
-
-Ver [Funcionalidades](docs/funcionalidades.md).
-
-## Desarrollo
-
-Ver [Desarrollo](docs/desarrollo.md).
-
-## API
-
-La API a utilizar sera la siguiente:
-`https://jsonplaceholder.typicode.com/users`
-
-Y para cada dentista en especifico:
-`https://jsonplaceholder.typicode.com/users/:id`
-
-### Formato de Entrega
-
-- No deberan cambiar los nombres ni ubicacion de las variables/componentes/context que vienen con el repo base
-
-Se aceptará la entrega mediante la submisión de la URL de su repositorio clonado
-
-El link al Google Form para la submisión será enviado por el profesor a cargo de la comisión.
-
-Mucha suerte y éxitos!
+---
