@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6a3601ac.css",
+    "main.js": "/static/js/main.f0329129.js",
+    "static/media/DH.png": "/static/media/DH.cf1fbd438ddbd2e716e4.png",
+    "static/media/doctor.jpg": "/static/media/doctor.eb13e855073291c62b00.jpg",
+    "static/media/ico-tiktok.png": "/static/media/ico-tiktok.43ac302806c4a7bfbee6.png",
+    "static/media/ico-instagram.png": "/static/media/ico-instagram.f4e3b009591c465f9cb7.png",
+    "static/media/ico-whatsapp.png": "/static/media/ico-whatsapp.7a1663faace5908d3984.png",
+    "index.html": "/index.html",
+    "main.6a3601ac.css.map": "/static/css/main.6a3601ac.css.map",
+    "main.f0329129.js.map": "/static/js/main.f0329129.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6a3601ac.css",
+    "static/js/main.f0329129.js"
+  ]
+}
